@@ -1,3 +1,4 @@
+#include "comm.h"
 #include "sound.h"
 #include "screen.h"
 #include <stdio.h>
@@ -18,7 +19,7 @@ void displayBar(char filename[]){
 	printf("Error opening the file\n");
 	return;
     }
-   fread(&myhdr, sizeof(WAVHeader), 1, fp);
+	fread(&myhdr, sizeof(WAVHeader), 1, fp);
    fread(&samples, sizeof(short), SAMPLERATE, fp);
    fclose(fp);
    // all the samples of 1sec are read to the array samples[], we need to
@@ -38,6 +39,9 @@ void displayBar(char filename[]){
 	bar(i, dB);
 #endif
    }	// for
+#ifdef COMM
+	sendToServer(rms_80);
+#endif
 }	// function
 // function definition of displayWAVheader()
 void displayWAVheader(char filename[]){

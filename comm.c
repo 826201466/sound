@@ -1,11 +1,20 @@
 #include "comm.h"
 #include <stdio.h>
-#include <curl/curl.h>
-#include <math.h>
+#include <curl/curl.h>	// sprintf()
+#include <math.h>		// libcurl
 
+// This function takes in MS value of 1 second, each is calculated by 16000/80=200
+// samples, but the function will re-calculated  8-pieces of RMS values, each corresponding
+// to 2000 samples or 125ms of sound
+
+/*
+	Function definition of sendToServer()
+	input argument:  r8[8],sum,i,j,
+	return argument: none
+*/
 void sendToServer(double r80[]){
 	double r8[8],sum;
-	int i,j;
+	int i,j;	// loop counters
 	CURL *curl;
 	CURLcode res;
 	char post[1000];

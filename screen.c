@@ -45,7 +45,7 @@ void setColor(int  color){
 
 /*
 	Function definition of bar()
-	This funcr
+	This function display the recording bar.
 */
 void bar(int col, double dB){
    int i;
